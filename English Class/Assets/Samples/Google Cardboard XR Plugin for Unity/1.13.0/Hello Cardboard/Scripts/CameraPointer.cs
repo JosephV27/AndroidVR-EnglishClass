@@ -37,14 +37,31 @@ public class CameraPointer : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
         {
-            // GameObject detected in front of the camera.
+
             if (_gazedAtObject != hit.transform.gameObject)
             {
+
+                if (hit.transform.name == "ButtonLearn")
+                {
+                    _gazedAtObject?.SendMessage("OnPointerMenuLearnButtonExit");
+                    _gazedAtObject = hit.transform.gameObject;
+                    _gazedAtObject.SendMessage("OnPointerMenuLearnButtonEnter");
+                }
+
+                if (hit.transform.name == "ButtonQuit")
+                {
+                    _gazedAtObject?.SendMessage("OnPointerMenuQExit");
+                    _gazedAtObject = hit.transform.gameObject;
+                    _gazedAtObject.SendMessage("OnPointerMenuQEnter");
+                }
+
                 // New GameObject.
                 _gazedAtObject?.SendMessage("OnPointerExit");
                 _gazedAtObject = hit.transform.gameObject;
                 _gazedAtObject.SendMessage("OnPointerEnter");
+
             }
+            
         }
         else
         {
