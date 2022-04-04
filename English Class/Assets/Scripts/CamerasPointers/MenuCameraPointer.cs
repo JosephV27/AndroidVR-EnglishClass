@@ -22,7 +22,7 @@ using UnityEngine;
 /// <summary>
 /// Sends messages to gazed GameObject.
 /// </summary>
-public class CameraPointer : MonoBehaviour
+public class MenuCameraPointer : MonoBehaviour
 {
     private const float _maxDistance = 1000;
     private GameObject _gazedAtObject = null;
